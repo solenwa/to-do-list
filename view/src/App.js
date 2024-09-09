@@ -9,7 +9,7 @@ const App = () => {
   const [todoList, setTodoList] = useState();
   const [error, setError] = useState();
 
-  // Create a fetchTodos() function to update the View from Model
+  // update view from model w/ controller
   const fetchTodos = async () => {
     const res = await getTodos();
     if (res.error) {
@@ -18,7 +18,7 @@ const App = () => {
     setTodoList(res.data);
   };
 
-  // Create a handleDelete() function to remove to-do list with matching id
+  // send user action to controller
   const handleDelete = async (id) => {
     try {
       await removeTodo(id);
@@ -28,7 +28,7 @@ const App = () => {
     }
   };
 
-  // Create a handleSubmit() function to add new to-do list
+  // send user action to controller
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError();
@@ -48,7 +48,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Initialize todoList
+    fetchTodos();
   }, []);
 
   return (
